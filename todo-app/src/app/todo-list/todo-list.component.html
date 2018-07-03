@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-sm-8">
+    <div class="input-group input-group-lg">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-lg">Digite sua atividade</span>
+      </div>
+      <input (keyup)="updateAtividade($event)" type="text" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
+      <button (click)="addAtividade()" type="button" class="btn btn-dark">Enviar</button>
+    </div>
+    <div *ngIf="check == false">
+      <div class="alert alert-danger" role="alert">
+        Mensagem inválida!
+      </div>
+    </div>   
+  </div>  
+  <div class="col-sm-4">
+    <div class="input-group input-group-sm mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-sm">Pesquise uma atividade</span>
+      </div>
+      <input value={{pesquisa}} (keyup)="updatePesquisa($event)" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+    </div>
+  </div>  
+</div>
+<div *ngIf="listaPesquisa.length > 0">
+  <b><h2>Lista de atividades: </h2></b>
+  <ul>
+    <li *ngFor="let tarefa of listaPesquisa" class="list-group-item list-group-item-dark">
+      <div class="row"> 
+        <div class="col-sm-10">
+          <h3>{{tarefa}}</h3>
+        </div>
+        <div class="col-sm-2">     
+          <button (click)="delAtividade(tarefa)" type="button" class="btn btn-danger">DELETAR</button><br>
+        </div>
+      </div>  
+    </li>
+  </ul>
+</div>
+<div *ngIf="listaPesquisa.length == 0">
+  <h3> Não existem atividades em sua lista. </h3>
+</div>  
